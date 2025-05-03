@@ -8,6 +8,7 @@ const app = express()
 const PORT = 4000;
 
 dotEnv.config();
+//To connect to mongodb and to access mongo_uri from .env file
 mongoose.connect(process.env.MONGO_URI) 
     .then(()=>console.log("Mongodb connected successfully"))
     .catch((error)=>console.log(error))

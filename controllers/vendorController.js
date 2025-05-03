@@ -43,7 +43,7 @@ const vendorLogin = async(req, res)=>{
         res.status(200).json({message: "Login successful", token});
         console.log(email, "this is token", token);
     }catch(error){
-        console.groupCollapsed(error);
+        console.log(error);
         res.status(500).jso({error: "Internal server error"});
     }
 }

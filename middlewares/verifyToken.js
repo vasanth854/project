@@ -15,7 +15,7 @@ const verifyToken = async(req, res, next) => {
             const vendor = await Vendor.findById(decoded.vendorId);
 
             if(!vendor){
-                return res.status(401).json({error: "vendor not found"});
+                return res.status(404).json({error: "vendor not found"});
             }
 
             req.vendor = vendor._id;
