@@ -3,6 +3,7 @@ const Vendor = require('../models/Vendor');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs')
 const dotEnv = require('dotenv');
+const { populate } = require('../models/Firm');
 dotEnv.config();
 
 const secretKey = process.env.WhatIsYourName
@@ -48,4 +49,18 @@ const vendorLogin = async(req, res)=>{
     }
 }
 
-module.exports = {vendorRegister, vendorLogin}
+const getAllVendors = async(req, res) => {
+    try {
+        // Get vendors with populated firm data
+        const vendors = await Vendor
+            .find()
+            .populate('firm'); // Populate the 'firm' field with firm data
+            
+        res.status(200).json(vendors);
+    } catch(error) {
+        console.error('Error fetching vendors:', error);
+        res.status(500).json({error: "Internal server error"});
+    }
+}
+
+module.exports = {vendorRegister, vendorLogin, getAllVendors}
