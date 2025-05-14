@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
       cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
     }
-  });
+});
   const upload = multer({ storage: storage });
 
 const addFirm = async (req, res) => {
@@ -16,6 +16,7 @@ const addFirm = async (req, res) => {
         console.log('Vendor ID from request:', req.vendorid); // Changed to match verifyToken
 
         const {firmName, area, category, region, offer} = req.body
+        
         const image = req.file? req.file.filename:undefined;    
 
         const vendor = await Vendor.findById(req.vendorid); // Changed to match verifyToken
