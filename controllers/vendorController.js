@@ -63,4 +63,17 @@ const getAllVendors = async(req, res) => {
     }
 }
 
-module.exports = {vendorRegister, vendorLogin, getAllVendors}
+const getVendorById = async(req, res) => {
+    const vendorId = req.params.id;
+    try {
+        const vendor = await Vendor.findById(vendorId);
+        if (!vendor) {
+            return res.status(404).json({error: "Vendor not found"});
+        }
+        res.status(200).json({vendor});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error: "Internal server error"});
+    }
+}
+module.exports = {vendorRegister, vendorLogin, getAllVendors, getVendorById}
