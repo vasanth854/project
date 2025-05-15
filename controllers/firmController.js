@@ -41,6 +41,18 @@ const addFirm = async (req, res) => {
     }
 }
 
+const deleteFirmById = async(req, res)=>{
+    try {
+        const productId = req.params.productId;
+        const deletedProduct = await Firm.findByIdAndDelete(firmId);
+        if(!deletedProduct){
+            return res.status(404).json({error: 'Product not found'});
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: 'Internal server error'});
+    }
+}
 module.exports = { 
-    addFirm: [upload.single('image'), addFirm] 
+    addFirm: [upload.single('image'), addFirm], deleteFirmById
 };

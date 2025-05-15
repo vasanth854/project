@@ -1,4 +1,0 @@
-vendor authentication is very useful inorder to sent client request to that particular vendor. So we use JWT token
-We may think vendor can be identified using their id in DB but sometimes it can be exposed so it is not a safe approch so we generate a token using vendor id using JWT.
-Using const token = jwt.sign({vendorId: vendor._id}, secretKey, {expiresIn: '1h'})
-
