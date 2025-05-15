@@ -28,6 +28,6 @@ app.use('/uploads', express.static('uploads'));
 app.listen(PORT, ()=>{
     console.log(`server started and running at ${PORT}`)
 })
-app.use('/home', (req, res)=>{
+app.use('/', (req, res)=>{
     res.send("<h1> welcome to Order and Go");
 })
